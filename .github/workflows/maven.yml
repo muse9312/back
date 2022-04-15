@@ -33,24 +33,26 @@ jobs:
      - name: Set up docker buildx
        id: buildx
        uses: docker/setup-buildx-action@v1
-     - name: Cache docker layers
+      # gitaction cache 적용
+     - name: Cache Maven package
        uses: actions/cache@v2
        with:
-         path: /tmp/.buildx-cache
-         key: ${{ runner.os }}-buildx-${{ env.VERSION }}
-         restore-keys: |
-           ${{ runner.os }}-buildx-
-      # GitHub 컨테이너 레지스트리에 로그인 후 빌드 & 푸시
-     - name: Login to ghcr
-       uses: docker/login-action@v1
-       with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_TOKEN }}
-     - name: Build and push
-       id: docker_build
-       uses: docker/build-push-action@v2
-       with:
-          builder: ${{ steps.buildx.outputs.name }}
-          push: true
-          tags: ${{ env.DOCKER_IMAGE }}:latest
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+
+
+
+
+
+
+    #  - name: Build Docker Image
+    #    run: docker build --tag ${{ env.NAME }} .
+    #  - name: Upload to Registry
+    #    uses: elgohr/Publish-Docker-Github-Action@master
+    #    with:
+    #      name: muse9312/(docker container name)
+    #      username: ${{ secrets.DOCKER_USERNAME }}
+    #      password: ${{ secrets.DOCKER_PASSWORD }}
+       
