@@ -31,9 +31,9 @@ jobs:
      - name: Build with Maven
        run: mvn -B package --file pom.xml
       # docker build 수행
-     - name: Set up docker buildx
-       id: buildx
-       uses: docker/setup-buildx-action@v1
+     - name: Set up docker m2
+       id: m2
+       uses: docker/setup-m2-action@v1
       # gitaction cache 적용
      - name: Cache Maven package
        id: cache-maven
@@ -53,7 +53,7 @@ jobs:
        id: docker_build
        uses: docker/build-push-action@v2
        with:
-          builder: ${{ steps.cache-maven.outputs.name }}
+          builder: ${{ steps.m2.outputs.name }}
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:latest
     # 배포 Job
