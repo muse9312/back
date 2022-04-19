@@ -69,7 +69,7 @@ jobs:
       - name: Docker run
         run: |
           docker pull muse9312/cookub_backend
-          docker run -d -p 8080:8080 muse9312/cookub_backend
+        # docker run -d -p 8080:8080 muse9312/cookub_backend
 
           
           
