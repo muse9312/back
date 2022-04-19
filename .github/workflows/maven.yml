@@ -68,10 +68,12 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Docker run
         run: |
-          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi -f ${{ env.DOCKER_IMAGE }}:latest
           docker pull muse9312/cookub_backend:${GITHUB_SHA::7}
 
-          docker run -d -e -p 8080:8080 --name back --restart always ${{ env.DOCKER_IMAGE }}:latest
+          
+          
+          
+# docker run -d -e -p 8080:8080 --name back --restart always ${{ env.DOCKER_IMAGE }}:latest
 
 
 
