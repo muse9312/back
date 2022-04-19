@@ -68,8 +68,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Docker run
         run: |
-          docker pull muse9312/cookub_backend:${GITHUB_SHA::7}
-          docker run -d -p 8080:8080 muse9312/cookub_backend:${GITHUB_SHA::7}:latest
+          docker pull muse9312/cookub_backend:latest
+          docker run -d -p 8080:8080 muse9312/cookub_backend:latest
 
           
           
