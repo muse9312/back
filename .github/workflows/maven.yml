@@ -62,9 +62,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Docker run
         run: |
-          docker stop muse9312/cookub_backend:${GITHUB_SHA::7} && docker rm muse9312/cookub_backend:${GITHUB_SHA::7} && docker rmi -f muse9312/cookub_backend:${GITHUB_SHA::7}
+          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi -f ${{ env.NAME }}
           docker pull muse9312/cookub_backend:${GITHUB_SHA::7}
-          docker run -p 8080:8080 muse9312/cookub_backend:${GITHUB_SHA::7}
+          docker run -p --name ${{ env.NAME }} 8080:8080 muse9312/cookub_backend:${GITHUB_SHA::7}
 
-      
       
