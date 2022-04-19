@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 # 환경설정
 env:
-  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/backend
+  DOCKER_IMAGE: muse9312/cookub_backend:${GITHUB_SHA::7}
   VERSION: ${{ github.sha }}
   NAME: backend
 
@@ -62,7 +62,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Docker run
         run: |
+          docker stop muse9312/cookub_backend:${GITHUB_SHA::7} && docker rm muse9312/cookub_backend:${GITHUB_SHA::7} && docker rmi -f muse9312/cookub_backend:${GITHUB_SHA::7}
           docker pull muse9312/cookub_backend:${GITHUB_SHA::7}
           docker run -p 8080:8080 muse9312/cookub_backend:${GITHUB_SHA::7}
 
-       
+      
