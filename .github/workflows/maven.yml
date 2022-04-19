@@ -58,6 +58,6 @@ jobs:
       - name: Docker run
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi -f muse9312/cookub_backend:${GITHUB_SHA::7}
+          docker stop ${{ env.NAME }} && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
           docker pull muse9312/cookub_backend:${GITHUB_SHA::7}
-          docker run -p  8080:8080 --name backend muse9312/cookub_backend:${GITHUB_SHA::7}
+          docker run -d -p  8080:8080 --name backend --restart always muse9312/cookub_backend:${GITHUB_SHA::7}
