@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 @CrossOrigin
 public class UserController {
     @Autowired
