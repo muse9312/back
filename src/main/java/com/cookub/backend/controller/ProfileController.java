@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @Transactional
 public class ProfileController {
 
+    
     @Autowired
     ProfileService profileService;
 
