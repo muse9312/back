@@ -32,6 +32,7 @@ public class UserController {
     @Autowired
     private StorageService storageService;
 
+    
     @PostMapping("/auth/signUp")
     public ResponseEntity<User> signUp(@RequestBody UserDto userDto){
         Response response = new Response();

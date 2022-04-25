@@ -132,8 +132,8 @@ public class ProfileController {
     }
 
     // delete WorkCareer
-    @DeleteMapping(value = "/work/delete/{degreeId}")
-    public void delWork(@PathVariable("degreeId") Long degreeId) {
+    @DeleteMapping(value = "/work/delete/{workId}")
+    public void delWork(@PathVariable("workId") Long degreeId) {
         profileService.delWork(degreeId);
     }
 
